@@ -41,15 +41,15 @@ export interface ContentDetailsJson {
     duration: string;
 }
 
-export const getVideosByVideoListJson = (videoItemJsons: VideoItemJson[]) => {
-    const videos = [];
+export const getVideosByVideoListJson = (videoItemJsons: VideoItemJson[]): Video[] => {
+    const videos: Video[] = [];
     for (const videoItemJson of videoItemJsons) {
         videos.push(getVideoByVideoItemJson(videoItemJson));
     }
     return videos;
 };
 
-export const getVideoByVideoItemJson = (videoItemJson: VideoItemJson) => {
+export const getVideoByVideoItemJson = (videoItemJson: VideoItemJson): Video => {
     const video: Video = new Video();
 
     video.id = videoItemJson.id;
@@ -58,4 +58,6 @@ export const getVideoByVideoItemJson = (videoItemJson: VideoItemJson) => {
     // TODO: 目前使用預設畫質
     video.imageUrl = videoItemJson.snippet.thumbnails.default.url;
     video.duration = videoItemJson.contentDetails.duration;
+    
+    return video;
 };
