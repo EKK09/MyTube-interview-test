@@ -5,10 +5,12 @@ import { VideoListActionType } from "./videoListAction";
 
 export interface VideoListState {
     videos: Video[];
+    isFetching: boolean;
 }
 
 export const DEFAULT_VIDEO_LIST_STATE: VideoListState = {
     videos: [],
+    isFetching: false,
 };
 
 const videoListReducer: Reducer<VideoListState> = (
@@ -20,6 +22,12 @@ const videoListReducer: Reducer<VideoListState> = (
             return {
                 ...state,
                 videos: cloneDeep(action.videos),
+            };
+
+        case VideoListActionType.SET_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching,
             };
 
         default:
