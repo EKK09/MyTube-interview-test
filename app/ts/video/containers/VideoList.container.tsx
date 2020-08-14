@@ -5,6 +5,7 @@ import Video from "../Video";
 import { MyTubeState } from "../../myTube/myTubeReducer";
 import { cancelFetchVideoListAction, fetchVideoListAction } from "../videoListAction";
 import VideoList from "../components/VideoList.component";
+import ConnectedVideoListPagination from "./VideoListPagination.container";
 
 interface VideoListContainerProps extends VideoListStateProps{
     dispatch: Dispatch;
@@ -43,7 +44,10 @@ export class VideoListContainer extends React.Component<VideoListContainerProps>
 
     public render(): React.ReactNode {
         return (
-            <VideoList videos={this.props.videos}/>
+            <div className='video-list-main'>
+                <ConnectedVideoListPagination/>
+                <VideoList videos={this.props.videos}/>
+            </div>
         );
     }
 }
