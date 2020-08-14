@@ -1,7 +1,8 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import MyTubeRoutePathCollection from "../../common/constants/MyTubeRoutePathCollection";
 import ConnectedVideoList from "../../video/containers/VideoList.container";
+import ConnectedFavoriteList from "../../favorite/containers/FavoriteList.container";
 
 class MyTubeMain extends React.Component {
 
@@ -12,7 +13,7 @@ class MyTubeMain extends React.Component {
                     <Switch>
                         <Route
                             path={MyTubeRoutePathCollection.FAVORITE}
-                            component={() => <div>favorite</div>}
+                            component={ConnectedFavoriteList}
                             exact
                         />
                         <Route
