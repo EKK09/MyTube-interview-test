@@ -2,27 +2,25 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import Video from "../Video";
-import {MyTubeState} from "../../myTube/myTubeReducer";
+import { MyTubeState } from "../../myTube/myTubeReducer";
 import { cancelFetchVideoListAction, fetchVideoListAction } from "../videoListAction";
+import VideoList from "../components/VideoList.component";
 
 interface VideoListContainerProps extends VideoListStateProps{
     dispatch: Dispatch;
 }
 
 interface VideoListStateProps {
-    videoList: Video[];
+    videos: Video[];
     isFetching: boolean;
 }
 
 const mapStateToProps = (state: MyTubeState): VideoListStateProps => ({
-    videoList: state.videoListState.videos,
+    videos: state.videoListState.videos,
     isFetching: state.videoListState.isFetching,
 });
 
 export class VideoListContainer extends React.Component<VideoListContainerProps>{
-    constructor(props: VideoListContainerProps) {
-        super(props);
-    }
 
     public componentDidMount(): void {
         this.props.dispatch(fetchVideoListAction());
@@ -44,8 +42,9 @@ export class VideoListContainer extends React.Component<VideoListContainerProps>
 
 
     public render(): React.ReactNode {
-        // TODO: 新增列表元件
-        return null;
+        return (
+            <VideoList videos={this.props.videos}/>
+        );
     }
 }
 

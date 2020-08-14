@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import myTubeStore from "./myTube/myTubeStore";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import MyTubeRoutePathCollection from "./common/constants/MyTubeRoutePathCollection";
-
+import ConnectedVideoList from "./video/containers/VideoList.container";
 
 render(
     <Provider store={myTubeStore}>
@@ -18,7 +18,7 @@ render(
                 />
                 <Route
                     path={MyTubeRoutePathCollection.INDEX}
-                    component={() => <div>home</div>}
+                    component={ConnectedVideoList}
                     exact
                 />
             </Switch>
