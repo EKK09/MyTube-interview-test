@@ -1,6 +1,7 @@
 import { AnyAction } from "redux";
 import {ActionTypePrefix} from "../common/constants/ActionTypePrefix";
 import Video from "./Video";
+import Pagination from "../pagination/Pagination";
 
 const PREFIX: string = ActionTypePrefix.VIDEO_LIST;
 
@@ -9,6 +10,7 @@ export const VideoListActionType= {
     FETCH_LIST:`${PREFIX}_FETCH_LIST`,
     SET_IS_FETCHING: `${PREFIX}_SET_IS_FETCHING`,
     CANCEL_FETCH_LIST: `${PREFIX}_CANCEL_FETCH_LIST`,
+    SET_PAGINATION: `${PREFIX}_SET_PAGINATION`,
 };
 
 export const fetchVideoListAction = (): AnyAction => {
@@ -34,5 +36,12 @@ export const setIsFetchingVideoListAction = (isFetching: boolean): AnyAction => 
 export const cancelFetchVideoListAction = (): AnyAction => {
     return {
         type: VideoListActionType.CANCEL_FETCH_LIST,
+    };
+};
+
+export const setVideoListPaginationAction = (pagination: Pagination): AnyAction => {
+    return {
+        type: VideoListActionType.SET_PAGINATION,
+        pagination,
     };
 };

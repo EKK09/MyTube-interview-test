@@ -2,15 +2,20 @@ import { AnyAction, Reducer } from "redux";
 import { cloneDeep } from "lodash";
 import Video from "./Video";
 import { VideoListActionType } from "./videoListAction";
+import Pagination from "../pagination/Pagination";
 
 export interface VideoListState {
     videos: Video[];
     isFetching: boolean;
+    pagination: Pagination;
 }
+
+const defaultPagination: Pagination = new Pagination();
 
 export const DEFAULT_VIDEO_LIST_STATE: VideoListState = {
     videos: [],
     isFetching: false,
+    pagination: defaultPagination
 };
 
 const videoListReducer: Reducer<VideoListState> = (
@@ -28,6 +33,12 @@ const videoListReducer: Reducer<VideoListState> = (
             return {
                 ...state,
                 isFetching: action.isFetching,
+            };
+
+        case VideoListActionType.SET_PAGINATION:
+            return {
+                ...state,
+                pagination: cloneDeep(action.pagination),
             };
 
         default:
