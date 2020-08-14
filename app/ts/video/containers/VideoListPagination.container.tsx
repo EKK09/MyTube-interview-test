@@ -4,7 +4,7 @@ import { Dispatch } from "redux";
 import Pagination from "../../pagination/Pagination";
 import { cloneDeep } from "lodash";
 import {MyTubeState} from "../../myTube/myTubeReducer";
-import PageSelector from "../../pagination/component/PageSelector.component";
+import PageSelector from "../../pagination/components/PageSelector.component";
 import {setVideoListPaginationAction} from "../videoListAction";
 
 export interface VideoListPaginationContainerProps extends VideoListPaginationStateProps{
