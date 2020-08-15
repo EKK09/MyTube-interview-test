@@ -37,13 +37,21 @@ export class VideoListPagination extends React.Component<VideoListPaginationCont
         // TODO: 載入新的影片列表
     }
 
-    render(): React.ReactNode {
+    private getPageSelector(): React.ReactNode {
+        if (this.props.pagination.totalCount === 0) {
+            return null;
+        }
+
         return (
             <PageSelector
                 pagination={this.props.pagination}
                 handlePageChange={this.handlePageChange}
             />
         );
+    }
+
+    render(): React.ReactNode {
+        return this.getPageSelector();
     }
 }
 

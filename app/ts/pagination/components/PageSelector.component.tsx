@@ -21,12 +21,11 @@ class PageSelector extends React.Component<PageSelectorProps, PageSelectorState>
 
     private getPageSelectorLis(): React.ReactNode {
         const lis = [];
-
-        lis.push(this.getFirstPageLi());
         lis.push(this.getPrevPageLi());
+        lis.push(this.getFirstPageLi());
         lis.push(this.getPageOptionLis());
-        lis.push(this.getNextPageLi());
         lis.push(this.getLastPageLi());
+        lis.push(this.getNextPageLi());
 
         return lis;
     }
@@ -50,62 +49,82 @@ class PageSelector extends React.Component<PageSelectorProps, PageSelectorState>
     private getFirstPageLi(): React.ReactNode {
         const firstPage = 1;
 
+        if (this.props.pagination.currentPage < 6) {
+            return null;
+        }
+
         return (
-            <li
+            <a
                 key="first-page"
-                className={`page-selector-option first-page ${this.getDisabledClassName(this.isFirstPage())}`}
+                className={`page-option-list-item ${this.getDisabledClassName(this.isFirstPage())}`}
+                onClick={this.handlePageChange.bind(this, firstPage)}
+                href="#top"
             >
-                <a onClick={this.handlePageChange.bind(this, firstPage)}>
-                    <i className="fas fa-angle-double-left" />
-                </a>
-            </li>
+                {firstPage}
+            </a>
         );
     }
 
     private getLastPageLi(): React.ReactNode {
-        const lastPage = this.props.pagination.totalPage;
+        const lastPage: number = this.props.pagination.totalPage;
+        const currentPage: number = this.props.pagination.currentPage;
+
+        if (lastPage - currentPage < 10) {
+            return null;
+        }
 
         return (
-            <li
+            <a
                 key="last-page"
-                className={`page-selector-option last-page ${this.getDisabledClassName(this.isLastPage())}`}
+                className={`page-option-list-item ${this.getDisabledClassName(this.isLastPage())}`}
+                onClick={this.handlePageChange.bind(this, lastPage)}
+                href="#top"
             >
-                <a onClick={this.handlePageChange.bind(this, lastPage)}>
-                    <i className="fas fa-angle-double-right" />
-                </a>
-            </li>
+                {lastPage}
+            </a>
         );
     }
 
     private getPrevPageLi(): React.ReactNode {
+        if (this.props.pagination.currentPage === 1) {
+            return null;
+        }
+
         const prevPage = this.props.pagination.currentPage - 1;
 
         return (
-            <li
+            <a
                 key="prev-page"
-                className={`page-selector-option prev-page ${this.getDisabledClassName(this.isFirstPage())}`}
+                className={`page-option-list-item function-page ${this.getDisabledClassName(this.isFirstPage())}`}
+                onClick={this.handlePageChange.bind(this, prevPage)}
+                href="#top"
             >
-                <a onClick={this.handlePageChange.bind(this, prevPage)}>
-                    <i className="fas fa-angle-left" />
-                </a>
-            </li>
+                <i className="fas fa-angle-left" />
+                Prev
+            </a>
         );
     }
 
     private getNextPageLi(): React.ReactNode {
+        const currentPage: number = this.props.pagination.currentPage;
+        const lastPage: number = this.props.pagination.totalPage;
+
+        if (currentPage === lastPage) {
+            return null;
+        }
+
         const nextPage = this.props.pagination.currentPage + 1;
 
         return (
-            <li
+            <a
                 key="next-page"
-                className={`page-selector-option next-page ${this.getDisabledClassName(this.isLastPage())}`}
+                className={`page-option-list-item function-page ${this.getDisabledClassName(this.isLastPage())}`}
+                onClick={this.handlePageChange.bind(this, nextPage)}
+                href="#top"
             >
-                <a
-                    onClick={this.handlePageChange.bind(this, nextPage)}
-                >
-                    <i className="fas fa-angle-right" />
-                </a>
-            </li>
+                Next
+                <i className="fas fa-angle-right" />
+            </a>
         );
     }
 
@@ -126,11 +145,10 @@ class PageSelector extends React.Component<PageSelectorProps, PageSelectorState>
         return (
             <li
                 key={pageNumber}
-                className={`page-selector-option page ${this.getOptionActiveClassName(pageNumber)}`}
+                className={`page-option-list-item page ${this.getOptionActiveClassName(pageNumber)}`}
+                onClick={this.handlePageChange.bind(this, pageNumber)}
             >
-                <a onClick={this.handlePageChange.bind(this, pageNumber)}>
-                    {pageNumber}
-                </a>
+                {pageNumber}
             </li>
         );
     }
@@ -166,7 +184,7 @@ class PageSelector extends React.Component<PageSelectorProps, PageSelectorState>
         }
 
         return (
-            <ul className="page-selector">
+            <ul className="page-option-list">
                 {this.getPageSelectorLis()}
             </ul>
         );

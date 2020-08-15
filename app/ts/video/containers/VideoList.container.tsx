@@ -12,7 +12,6 @@ import {
 import VideoList, {VideoListProps} from "../components/VideoList.component";
 import ConnectedVideoListPagination from "./VideoListPagination.container";
 import {addFavoriteVideoIdAction, removeFavoriteVideoIdAction} from "../../favorite/favoriteListAction";
-import VideoListItem from "../components/VideoListItem.component";
 import Pagination from "../../pagination/Pagination";
 
 interface VideoListContainerProps extends VideoListStateProps{
@@ -89,11 +88,11 @@ export class VideoListContainer extends React.Component<VideoListContainerProps>
         // TODO: 新增列表元件
         return (
             <div className='video-list-main'>
-                <ConnectedVideoListPagination/>
                 <VideoList videos={this.getCurrentPageVideos()}
                    addFavoriteVideo={this.addFavoriteVideo}
                    removeFavoriteVideo={this.removeFavoriteVideo}
                 />
+                <ConnectedVideoListPagination/>
             </div>
         );
     }
