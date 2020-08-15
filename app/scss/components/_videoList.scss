@@ -15,17 +15,25 @@
     cursor: pointer;
 
     .video-title {
+        position: absolute;
         font: 18px Roboto Arial sans-serif;
         font-weight: 900;
-        white-space: normal;
         width: 100%;
-        height: 20px;
+        height: auto;
         text-overflow: ellipsis;
         overflow: hidden;
         color: #c6c6c6;
+        z-index: 100;
+        word-spacing: -1.5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         &:hover {
             color: #FF9900;
+            text-decoration-line: underline;
+            font-size: 19px;
+            white-space: normal;
         }
     }
 
@@ -36,8 +44,8 @@
         flex-direction: row;
         font: 14px Roboto Arial sans-serif;
         font-weight: bolder;
-        letter-spacing: -1px;
-        word-spacing: -1px;
+        letter-spacing: -0.5px;
+        word-spacing: -0.5px;
         width: 100%;
         height: auto;
         line-height: 80%;
@@ -51,10 +59,9 @@
         width: 100%;
         height: 300px;
         position: relative;
+        overflow: hidden;
 
         .video-image {
-            width: 100%;
-            height: 100%;
         }
 
         .video-duration {
