@@ -13,6 +13,7 @@ import VideoList, {VideoListProps} from "../components/VideoList.component";
 import ConnectedVideoListPagination from "./VideoListPagination.container";
 import {addFavoriteVideoIdAction, removeFavoriteVideoIdAction} from "../../favorite/favoriteListAction";
 import VideoListItem from "../components/VideoListItem.component";
+import Pagination from "../../pagination/Pagination";
 
 interface VideoListContainerProps extends VideoListStateProps{
     dispatch: Dispatch;
@@ -21,11 +22,13 @@ interface VideoListContainerProps extends VideoListStateProps{
 interface VideoListStateProps {
     videos: Video[];
     isFetching: boolean;
+    pagination: Pagination;
 }
 
 const mapStateToProps = (state: MyTubeState): VideoListStateProps => ({
     videos: state.videoListState.videos,
     isFetching: state.videoListState.isFetching,
+    pagination: state.videoListState.pagination,
 });
 
 export class VideoListContainer extends React.Component<VideoListContainerProps>{
@@ -64,13 +67,30 @@ export class VideoListContainer extends React.Component<VideoListContainerProps>
         this.props.dispatch(removeFavoriteVideoIdAction(id));
     }
 
+    private getCurrentPageVideos(): Video[] {
+        const videos: Video[] = this.props.videos;
+        const currentPageVideos: Video[] = [];
+        const perPage: number = this.props.pagination.perPage;
+        const currentPage: number = this.props.pagination.currentPage;
+        const startIndex: number = perPage * (currentPage -1);
+
+        for (let videoIndex = startIndex; videoIndex < videos.length; videoIndex++) {
+            currentPageVideos.push(videos[videoIndex]);
+
+            if (currentPageVideos.length === 12) {
+                break;
+            }
+        }
+
+        return currentPageVideos;
+    }
 
     public render(): React.ReactNode {
         // TODO: 新增列表元件
         return (
             <div className='video-list-main'>
                 <ConnectedVideoListPagination/>
-                <VideoList videos={this.props.videos}
+                <VideoList videos={this.getCurrentPageVideos()}
                    addFavoriteVideo={this.addFavoriteVideo}
                    removeFavoriteVideo={this.removeFavoriteVideo}
                 />

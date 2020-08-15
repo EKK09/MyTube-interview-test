@@ -9,7 +9,7 @@ export const getFetchVideoListUrl = (): string => {
     let url: string = "";
     url += VideoApiPaths.FETCH_VIDEO_LIST_URL;
     // TODO: 提出參數
-    return url + "?part=id, snippet,contentDetails&chart=mostPopular&key=AIzaSyBVt3SPSyBXBAa9pCQ4McLKAxPsABnCVJk&maxResults=10";
+    return url + "?part=id, snippet,contentDetails&chart=mostPopular&key=AIzaSyBVt3SPSyBXBAa9pCQ4McLKAxPsABnCVJk&maxResults=100";
 };
 
 export const fetchVideoListApi = async (): Promise<AnyAction> => {

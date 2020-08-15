@@ -7,7 +7,7 @@ class Pagination {
     public totalCount: number = 0;
 
     public loadFromPageInfoJson(json: PageInfoJson): void {
-        this.perPage = Number(json.resultsPerPage);
+        // this.perPage = Number(json.resultsPerPage);
         this.totalCount = Number(json.totalResults);
         this.totalPage = Math.ceil(this.totalCount / this.perPage);
     }
