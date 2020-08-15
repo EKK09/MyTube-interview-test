@@ -3,8 +3,8 @@ import Video from "../Video";
 
 export interface VideoListItemProps {
     video: Video;
-    addFavoriteVideoId: (id: string) => void;
-    removeFavoriteVideoId: (id: string) => void;
+    addFavoriteVideo: (id: string) => void;
+    removeFavoriteVideo: (id: string) => void;
 }
 
 class VideoListItem extends React.Component<VideoListItemProps> {
@@ -66,11 +66,14 @@ class VideoListItem extends React.Component<VideoListItemProps> {
     private handleFavoriteButtonClick(): void {
         const videoId: string = this.props.video.id;
         if (this.props.video.favorite === true) {
-            this.props.removeFavoriteVideoId(videoId);
+            this.props.removeFavoriteVideo(videoId);
+
+            return;
         }
 
-        this.props.addFavoriteVideoId(videoId);
+        this.props.addFavoriteVideo(videoId);
     }
+
     public render(): React.ReactNode {
         // TODO : 調整 layout
         return(

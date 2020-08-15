@@ -4,6 +4,7 @@ import {Dispatch} from "redux";
 import Video from "../Video";
 import VideoListItem from "../components/VideoListItem.component";
 import {addFavoriteVideoIdAction, removeFavoriteVideoIdAction} from "../../favorite/favoriteListAction";
+import {likeVideoFavoriteByIdAction, unlikeVideoFavoriteByIdAction} from "../videoListAction";
 
 export interface VideoListItemContainerProps {
     dispatch: Dispatch;
@@ -13,15 +14,18 @@ export interface VideoListItemContainerProps {
 export class VideoListItemContainer extends React.Component<VideoListItemContainerProps>{
     constructor(props: VideoListItemContainerProps) {
         super(props);
-        this.addFavoriteVideoId = this.addFavoriteVideoId.bind(this);
-        this.removeFavoriteVideoId = this.removeFavoriteVideoId.bind(this);
+        this.addFavoriteVideo = this.addFavoriteVideo.bind(this);
+        this.removeFavoriteVideo = this.removeFavoriteVideo.bind(this);
     }
 
-    private addFavoriteVideoId(id: string): void {
+    private addFavoriteVideo(id: string): void {
+        this.props.dispatch(likeVideoFavoriteByIdAction(id));
         this.props.dispatch(addFavoriteVideoIdAction(id));
     }
 
-    private removeFavoriteVideoId(id: string): void {
+    private removeFavoriteVideo(id: string): void {
+        this.props.dispatch(unlikeVideoFavoriteByIdAction(id));
+
         this.props.dispatch(removeFavoriteVideoIdAction(id));
     }
 
@@ -29,8 +33,8 @@ export class VideoListItemContainer extends React.Component<VideoListItemContain
         return(
             <VideoListItem
                 video={this.props.video}
-                addFavoriteVideoId={this.addFavoriteVideoId}
-                removeFavoriteVideoId={this.removeFavoriteVideoId}
+                addFavoriteVideo={this.addFavoriteVideo}
+                removeFavoriteVideo={this.removeFavoriteVideo}
             />
         );
     }
