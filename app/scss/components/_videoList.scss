@@ -1,0 +1,82 @@
+
+.video-list {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.video-list-item {
+    width: 380px;
+    height: 400px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    cursor: pointer;
+
+    .video-title {
+        font: 18px Roboto Arial sans-serif;
+        font-weight: 900;
+        white-space: normal;
+        width: 100%;
+        height: 20px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        color: #c6c6c6;
+
+        &:hover {
+            color: #FF9900;
+        }
+    }
+
+    .video-description {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        font: 14px Roboto Arial sans-serif;
+        font-weight: bolder;
+        letter-spacing: -1px;
+        word-spacing: -1px;
+        width: 100%;
+        height: auto;
+        line-height: 80%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        color: #606060;
+        word-break: break-word;
+    }
+
+    .video-image-wrapper {
+        width: 100%;
+        height: 300px;
+        position: relative;
+
+        .video-image {
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0,0,0,0.8);
+            margin: 4px;
+            padding: 3px 4px;
+            border-radius: 2px;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+    }
+
+    .video-favorite-button  {
+        font-size: 16px;
+        display: inline-flex;
+        width: 20px;
+        height: auto;
+        align-self: flex-end;
+        margin: 4px;
+        color: #F783AC;
+    }
+}

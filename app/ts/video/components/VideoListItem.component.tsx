@@ -1,5 +1,6 @@
 import * as React from "react";
 import Video from "../Video";
+import {getTimeTextFromDuration} from "../../common/tool/VideoDurationConverter";
 
 export interface VideoListItemProps {
     video: Video;
@@ -34,12 +35,25 @@ class VideoListItem extends React.Component<VideoListItemProps> {
         )
     }
 
+    private getVideoImageWrapper(): React.ReactNode {
+        return (
+            <div className="video-image-wrapper">
+                {this.getVideoImage()}
+                {this.getVideoDuration()}
+            </div>
+        );
+    }
+
     private getVideoDuration(): React.ReactNode {
+
+        const duration: string = this.props.video.duration;
+        const timeText: string = getTimeTextFromDuration(duration);
+
         return (
             <div
                 className="video-duration"
             >
-                {this.props.video.duration}
+                {timeText}
             </div>
         )
     }
@@ -55,13 +69,21 @@ class VideoListItem extends React.Component<VideoListItemProps> {
     private getFavoriteButton(): React.ReactNode {
         return (
             <a
-                className="video-favorite-button"
+                className={`video-favorite-button`}
                 onClick={this.handleFavoriteButtonClick}
             >
-                like
+                {this.getFavoriteIcon()}
             </a>
         );
 
+    }
+
+    private getFavoriteIcon(): React.ReactNode {
+        if (this.props.video.favorite) {
+            return <i className="fas fa-heart"/>
+        }
+
+        return <i className="far fa-heart"/>;
     }
 
     private handleFavoriteButtonClick(): void {
@@ -80,9 +102,8 @@ class VideoListItem extends React.Component<VideoListItemProps> {
         return(
             <div className="video-list-item">
                 {this.getVideoTitle()}
-                {this.getVideoImage()}
+                {this.getVideoImageWrapper()}
                 {this.getVideoDescription()}
-                {this.getVideoDuration()}
                 {this.getFavoriteButton()}
             </div>
         );

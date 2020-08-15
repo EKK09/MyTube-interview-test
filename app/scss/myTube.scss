@@ -1,5 +1,14 @@
 @import "./base/reset";
+@import "./components/myTubeMain";
+@import "./components/videoList";
 
 * {
     box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+    color: white;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
 }
