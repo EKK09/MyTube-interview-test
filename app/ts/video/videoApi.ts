@@ -1,20 +1,27 @@
 import HttpMethod from "../common/constants/HttpMethod";
 import { AnyAction } from "redux";
+import {QueryParameter} from "../common/constants/ApiConfig";
 
 export enum VideoApiPaths {
     FETCH_VIDEO_LIST_URL = "https://www.googleapis.com/youtube/v3/videos",
 }
 
-export const getFetchVideoListUrl = (): string => {
+export const getFetchVideoListUrl = (queryParameter: QueryParameter): string => {
     let url: string = "";
     url += VideoApiPaths.FETCH_VIDEO_LIST_URL;
-    // TODO: 提出參數
-    return url + "?part=id, snippet,contentDetails&chart=mostPopular&key=AIzaSyBVt3SPSyBXBAa9pCQ4McLKAxPsABnCVJk&maxResults=100";
+    url += `?part=${queryParameter.part}`;
+    url += `&chart=${queryParameter.chart}`;
+    url += `&videoCategoryId=${queryParameter.videoCategoryId}`;
+    url += `&key=${queryParameter.key}`;
+    url += `&maxResults=${queryParameter.maxResults}`;
+    url += `&pageToken=${queryParameter.pageToken}`;
+
+    return url;
 };
 
-export const fetchVideoListApi = async (): Promise<AnyAction> => {
+export const fetchVideoListApi = async (queryParameter: QueryParameter): Promise<AnyAction> => {
     return await fetch(
-        getFetchVideoListUrl(),
+        getFetchVideoListUrl(queryParameter),
         {
             method: HttpMethod.GET,
             headers: {
