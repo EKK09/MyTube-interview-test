@@ -12,12 +12,10 @@ interface FavoriteListContainerProps extends FavoriteListStateProps{
 
 interface FavoriteListStateProps {
     videos: Video[];
-    isFetching: boolean;
 }
 
 const mapStateToProps = (state: MyTubeState): FavoriteListStateProps => ({
-    videos: state.videoListState.videos,
-    isFetching: state.videoListState.isFetching,
+    videos: state.favoriteListState.videos,
 });
 
 export class FavoriteListContainer extends React.Component<FavoriteListContainerProps>{
