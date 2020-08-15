@@ -39,8 +39,6 @@ class MyTubeTabList extends React.Component<RouteComponentProps>{
     }
 
     private isCurrentPath(path: MyTubeRoutePathCollection): boolean {
-        console.log("pathname" + this.props.location.pathname);
-        console.log("path" + path);
         return this.props.location.pathname === path;
     }
 
