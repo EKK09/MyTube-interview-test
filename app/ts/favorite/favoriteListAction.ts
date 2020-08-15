@@ -2,7 +2,9 @@ import { AnyAction } from "redux";
 import {ActionTypePrefix} from "../common/constants/ActionTypePrefix";
 import Video from "../video/Video";
 import Pagination from "../pagination/Pagination";
-const PREFIX: string = ActionTypePrefix.VIDEO_LIST;
+import {VideoListActionType} from "../video/videoListAction";
+
+const PREFIX: string = ActionTypePrefix.FAVORITE_LIST;
 
 export const FavoriteListActionType= {
     SET_LIST: `${PREFIX}_SET_LIST`,
@@ -11,6 +13,8 @@ export const FavoriteListActionType= {
     REMOVE_FAVORITE_VIDEO_ID:`${PREFIX}_REMOVE_FAVORITE_VIDEO_ID`,
     SET_PAGINATION: `${PREFIX}_SET_PAGINATION`,
     CANCEL_FETCH_LIST: `${PREFIX}_CANCEL_FETCH_LIST`,
+    LIKE_VIDEO: `${PREFIX}_LIKE_VIDEO`,
+    UNLIKE_VIDEO: `${PREFIX}_UNLIKE_VIDEO`,
 };
 
 export const fetchFavoriteListAction = (): AnyAction => {
@@ -51,5 +55,19 @@ export const setFavoriteListPaginationAction = (pagination: Pagination): AnyActi
     return {
         type: FavoriteListActionType.SET_PAGINATION,
         pagination,
+    };
+};
+
+export const likeVideoFavoriteByIdAction= (id: string): AnyAction => {
+    return {
+        type: FavoriteListActionType.LIKE_VIDEO,
+        id
+    };
+};
+
+export const unlikeVideoFavoriteByIdAction= (id: string): AnyAction => {
+    return {
+        type: FavoriteListActionType.UNLIKE_VIDEO,
+        id
     };
 };

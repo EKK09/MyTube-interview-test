@@ -21,6 +21,8 @@ const favoriteListReducer: Reducer<FavoriteListState> = (
     state: FavoriteListState = DEFAULT_FAVORITE_LIST_STATE,
     action: AnyAction,
 ): FavoriteListState => {
+    let videos: Video[];
+
     switch (action.type) {
 
         case FavoriteListActionType.SET_LIST:
@@ -31,22 +33,46 @@ const favoriteListReducer: Reducer<FavoriteListState> = (
 
         case FavoriteListActionType.ADD_FAVORITE_VIDEO_ID:
             SessionManager.addFavoriteVideoId(action.id);
-
-            return {
-                ...state,
-            };
+            return state;
 
         case FavoriteListActionType.REMOVE_FAVORITE_VIDEO_ID:
             SessionManager.removeFavoriteVideoId(action.id);
-
-            return {
-                ...state,
-            };
+            return state;
 
         case FavoriteListActionType.SET_PAGINATION:
             return {
                 ...state,
                 pagination: cloneDeep(action.pagination),
+            };
+
+        case FavoriteListActionType.LIKE_VIDEO:
+            videos = [];
+
+            for (const video of state.videos) {
+                if (video.id === action.id) {
+                    video.favorite = true;
+                }
+                videos.push(video);
+            }
+
+            return {
+                ...state,
+                videos: videos,
+            };
+
+        case FavoriteListActionType.UNLIKE_VIDEO:
+            videos = [];
+
+            for (const video of state.videos) {
+                if (video.id === action.id) {
+                    video.favorite = false;
+                }
+                videos.push(video);
+            }
+
+            return {
+                ...state,
+                videos: videos,
             };
 
         default:
