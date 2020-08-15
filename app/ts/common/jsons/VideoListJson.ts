@@ -55,8 +55,7 @@ export const getVideoByVideoItemJson = (videoItemJson: VideoItemJson): Video => 
     video.id = videoItemJson.id;
     video.title = videoItemJson.snippet.title;
     video.description = videoItemJson.snippet.description;
-    // TODO: 目前使用預設畫質
-    video.imageUrl = videoItemJson.snippet.thumbnails.default.url;
+    video.imageUrl = videoItemJson.snippet.thumbnails.high.url;
     video.duration = videoItemJson.contentDetails.duration;
     
     return video;
