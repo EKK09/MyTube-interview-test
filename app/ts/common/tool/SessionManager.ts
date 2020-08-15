@@ -4,7 +4,11 @@ class SessionManager {
     static getFavoriteVideoIdList(): string[] {
         try {
             const favoriteVideoIdsJson: string | null = localStorage.getItem(SessionManager.FAVORITE_ID_LIST);
-            if (favoriteVideoIdsJson === null) {
+
+            if (
+                favoriteVideoIdsJson === null ||
+                JSON.parse(favoriteVideoIdsJson) === null
+            ) {
                 return [];
 
             }
@@ -28,6 +32,11 @@ class SessionManager {
     static addFavoriteVideoId(id: string): void {
         try {
             const favoriteVideoIds: string[] = SessionManager.getFavoriteVideoIdList();
+
+            if (favoriteVideoIds.indexOf(id) >= 0) {
+                return;
+            }
+
             favoriteVideoIds.push(id);
             SessionManager.setFavoriteVideoIdList(favoriteVideoIds);
         } catch (e) {
