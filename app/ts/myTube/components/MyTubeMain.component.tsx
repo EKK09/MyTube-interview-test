@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import MyTubeRoutePathCollection from "../../common/constants/MyTubeRoutePathCollection";
 import ConnectedVideoList from "../../video/containers/VideoList.container";
 import ConnectedFavoriteList from "../../favorite/containers/FavoriteList.container";
-import FavoritePageLink from "../../favorite/components/FavoritePageLink.component";
+import MyTubeHeader from "./MyTubeHeader.component";
 
 class MyTubeMain extends React.Component {
 
@@ -11,15 +11,7 @@ class MyTubeMain extends React.Component {
         return(
             <div className="myTube-main">
                 <Router>
-                    <FavoritePageLink
-                        routePath={MyTubeRoutePathCollection.FAVORITE}
-                        text={"收藏頁面"}
-                    />
-
-                    <FavoritePageLink
-                        routePath={MyTubeRoutePathCollection.INDEX}
-                        text={"首頁"}
-                    />
+                    <MyTubeHeader/>
                     <Switch>
                         <Route
                             path={MyTubeRoutePathCollection.FAVORITE}
