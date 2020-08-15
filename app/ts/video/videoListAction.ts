@@ -11,6 +11,8 @@ export const VideoListActionType= {
     SET_IS_FETCHING: `${PREFIX}_SET_IS_FETCHING`,
     CANCEL_FETCH_LIST: `${PREFIX}_CANCEL_FETCH_LIST`,
     SET_PAGINATION: `${PREFIX}_SET_PAGINATION`,
+    LIKE_VIDEO: `${PREFIX}_LIKE_VIDEO`,
+    UNLIKE_VIDEO: `${PREFIX}_UNLIKE_VIDEO`,
 };
 
 export const fetchVideoListAction = (): AnyAction => {
@@ -43,5 +45,19 @@ export const setVideoListPaginationAction = (pagination: Pagination): AnyAction 
     return {
         type: VideoListActionType.SET_PAGINATION,
         pagination,
+    };
+};
+
+export const likeVideoFavoriteByIdAction= (id: string): AnyAction => {
+    return {
+        type: VideoListActionType.LIKE_VIDEO,
+        id
+    };
+};
+
+export const unlikeVideoFavoriteByIdAction= (id: string): AnyAction => {
+    return {
+        type: VideoListActionType.UNLIKE_VIDEO,
+        id
     };
 };

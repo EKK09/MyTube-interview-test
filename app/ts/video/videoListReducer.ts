@@ -22,6 +22,8 @@ const videoListReducer: Reducer<VideoListState> = (
     state: VideoListState = DEFAULT_VIDEO_LIST_STATE,
     action: AnyAction,
 ): VideoListState => {
+    let videos: Video[];
+
     switch (action.type) {
         case VideoListActionType.SET_VIDEO_LIST:
             return {
@@ -39,6 +41,36 @@ const videoListReducer: Reducer<VideoListState> = (
             return {
                 ...state,
                 pagination: cloneDeep(action.pagination),
+            };
+
+        case VideoListActionType.LIKE_VIDEO:
+            videos = [];
+
+            for (const video of state.videos) {
+                if (video.id === action.id) {
+                    video.favorite = true;
+                }
+                videos.push(video);
+            }
+
+            return {
+                ...state,
+                videos: videos,
+            };
+
+        case VideoListActionType.UNLIKE_VIDEO:
+            videos = [];
+
+            for (const video of state.videos) {
+                if (video.id === action.id) {
+                    video.favorite = false;
+                }
+                videos.push(video);
+            }
+
+            return {
+                ...state,
+                videos: videos,
             };
 
         default:
