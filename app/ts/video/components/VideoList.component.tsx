@@ -6,6 +6,7 @@ export interface VideoListProps {
     videos: Video[];
     addFavoriteVideo: (id: string) => void;
     removeFavoriteVideo: (id: string) => void;
+    handleVideoClick: (video: Video) => void;
 }
 
 class VideoList extends React.Component <VideoListProps> {
@@ -23,6 +24,7 @@ class VideoList extends React.Component <VideoListProps> {
                     video={video}
                     addFavoriteVideo={this.props.addFavoriteVideo}
                     removeFavoriteVideo={this.props.removeFavoriteVideo}
+                    handleVideoClick={this.props.handleVideoClick}
                 />
             );
         }

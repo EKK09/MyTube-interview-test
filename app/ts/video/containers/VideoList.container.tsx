@@ -13,6 +13,7 @@ import VideoList, {VideoListProps} from "../components/VideoList.component";
 import ConnectedVideoListPagination from "./VideoListPagination.container";
 import {addFavoriteVideoIdAction, removeFavoriteVideoIdAction} from "../../favorite/favoriteListAction";
 import Pagination from "../../pagination/Pagination";
+import {setDialogVideoAction, showVideoDialogAction} from "../../videoDialog/videoDialogActions";
 
 interface VideoListContainerProps extends VideoListStateProps{
     dispatch: Dispatch;
@@ -35,6 +36,7 @@ export class VideoListContainer extends React.Component<VideoListContainerProps>
         super(props);
         this.addFavoriteVideo = this.addFavoriteVideo.bind(this);
         this.removeFavoriteVideo = this.removeFavoriteVideo.bind(this);
+        this.handleVideoClick = this.handleVideoClick.bind(this);
     }
 
     public componentDidMount(): void {
@@ -84,13 +86,18 @@ export class VideoListContainer extends React.Component<VideoListContainerProps>
         return currentPageVideos;
     }
 
+    private handleVideoClick(video: Video): void{
+        this.props.dispatch(showVideoDialogAction());
+        this.props.dispatch(setDialogVideoAction(video));
+    }
+
     public render(): React.ReactNode {
-        // TODO: 新增列表元件
         return (
             <div className='video-list-main'>
                 <VideoList videos={this.getCurrentPageVideos()}
                    addFavoriteVideo={this.addFavoriteVideo}
                    removeFavoriteVideo={this.removeFavoriteVideo}
+                   handleVideoClick={this.handleVideoClick}
                 />
                 <ConnectedVideoListPagination/>
             </div>

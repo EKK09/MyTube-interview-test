@@ -10,7 +10,8 @@ import {
     removeFavoriteVideoIdAction
 } from "../favoriteListAction";
 import VideoList from "../../video/components/VideoList.component";
-import {likeVideoFavoriteByIdAction, unlikeVideoFavoriteByIdAction} from "../../favorite/favoriteListAction";
+import {likeVideoFavoriteByIdAction, unlikeVideoFavoriteByIdAction} from "../favoriteListAction";
+import {setDialogVideoAction, showVideoDialogAction} from "../../videoDialog/videoDialogActions";
 
 interface FavoriteListContainerProps extends FavoriteListStateProps{
     dispatch: Dispatch;
@@ -29,6 +30,7 @@ export class FavoriteListContainer extends React.Component<FavoriteListContainer
         super(props);
         this.addFavoriteVideo = this.addFavoriteVideo.bind(this);
         this.removeFavoriteVideo = this.removeFavoriteVideo.bind(this);
+        this.handleVideoClick = this.handleVideoClick.bind(this);
     }
 
     public componentDidMount(): void {
@@ -50,6 +52,11 @@ export class FavoriteListContainer extends React.Component<FavoriteListContainer
         this.props.dispatch(removeFavoriteVideoIdAction(id));
     }
 
+    private handleVideoClick(video: Video): void{
+        this.props.dispatch(showVideoDialogAction());
+        this.props.dispatch(setDialogVideoAction(video));
+    }
+
     public render(): React.ReactNode {
         return (
             <div className='favorite-video-list-main'>
@@ -57,6 +64,7 @@ export class FavoriteListContainer extends React.Component<FavoriteListContainer
                     videos={this.props.videos}
                     addFavoriteVideo={this.addFavoriteVideo}
                     removeFavoriteVideo={this.removeFavoriteVideo}
+                    handleVideoClick={this.handleVideoClick}
                 />
             </div>
         );

@@ -6,6 +6,7 @@ export interface VideoListItemProps {
     video: Video;
     addFavoriteVideo: (id: string) => void;
     removeFavoriteVideo: (id: string) => void;
+    handleVideoClick: (video: Video) => void;
 }
 
 class VideoListItem extends React.Component<VideoListItemProps> {
@@ -13,6 +14,7 @@ class VideoListItem extends React.Component<VideoListItemProps> {
         super(props);
         this.handleFavoriteButtonClick = this.handleFavoriteButtonClick.bind(this);
         this.getFavoriteButton = this.getFavoriteButton.bind(this);
+        this.handleVideoItemClick = this.handleVideoItemClick.bind(this);
     }
 
     private getVideoTitle(): React.ReactNode {
@@ -97,10 +99,16 @@ class VideoListItem extends React.Component<VideoListItemProps> {
         this.props.addFavoriteVideo(videoId);
     }
 
+    private handleVideoItemClick(): void {
+        console.log('rwrw');
+        const video: Video = this.props.video;
+        this.props.handleVideoClick(video);
+    }
+
     public render(): React.ReactNode {
         // TODO : 調整 layout
         return(
-            <div className="video-list-item">
+            <div className="video-list-item" onClick={this.handleVideoItemClick}>
                 {this.getVideoTitle()}
                 {this.getVideoImageWrapper()}
                 {this.getVideoDescription()}
