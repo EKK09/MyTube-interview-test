@@ -4,6 +4,7 @@ import MyTubeRoutePathCollection from "../../common/constants/MyTubeRoutePathCol
 import ConnectedVideoList from "../../video/containers/VideoList.container";
 import ConnectedFavoriteList from "../../favorite/containers/FavoriteList.container";
 import MyTubeHeader from "./MyTubeHeader.component";
+import ConnectedVideoDialog from "../../videoDialog/containers/VideoDialog.container";
 
 class MyTubeMain extends React.Component {
 
@@ -12,6 +13,7 @@ class MyTubeMain extends React.Component {
             <div className="myTube-main">
                 <Router>
                     <MyTubeHeader/>
+                    <ConnectedVideoDialog/>
                     <Switch>
                         <Route
                             path={MyTubeRoutePathCollection.FAVORITE}
