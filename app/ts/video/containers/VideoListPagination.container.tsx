@@ -34,7 +34,7 @@ export class VideoListPagination extends React.Component<VideoListPaginationCont
         const pagination = cloneDeep(this.props.pagination);
         pagination.currentPage = page;
         this.props.dispatch(setVideoListPaginationAction(pagination));
-        // TODO: 載入新的影片列表
+        window.scrollTo(0, 0);
     }
 
     private getPageSelector(): React.ReactNode {
