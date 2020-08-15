@@ -14,6 +14,7 @@ import {
 import VideoList from "../../video/components/VideoList.component";
 import ConnectedFavoriteListPagination from "./FavoriteListPagination.container";
 import {setDialogVideoAction, showVideoDialogAction} from "../../videoDialog/videoDialogActions";
+import EmptyList from "../../common/components/EmptyList.component";
 
 interface FavoriteListContainerProps extends FavoriteListStateProps{
     dispatch: Dispatch;
@@ -60,6 +61,13 @@ export class FavoriteListContainer extends React.Component<FavoriteListContainer
     }
 
     public render(): React.ReactNode {
+
+        if (this.props.videos.length === 0) {
+            return (
+                <EmptyList/>
+            );
+        }
+
         return (
             <div className='favorite-video-list-main'>
                 <VideoList

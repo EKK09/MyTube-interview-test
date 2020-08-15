@@ -14,6 +14,8 @@ import ConnectedVideoListPagination from "./VideoListPagination.container";
 import {addFavoriteVideoIdAction, removeFavoriteVideoIdAction} from "../../favorite/favoriteListAction";
 import Pagination from "../../pagination/Pagination";
 import {setDialogVideoAction, showVideoDialogAction} from "../../videoDialog/videoDialogActions";
+import Loading from "../../common/components/Loading.component";
+import EmptyList from "../../common/components/EmptyList.component";
 
 interface VideoListContainerProps extends VideoListStateProps{
     dispatch: Dispatch;
@@ -45,16 +47,6 @@ export class VideoListContainer extends React.Component<VideoListContainerProps>
 
     public componentWillUnmount(): void {
         this.props.dispatch(cancelFetchVideoListAction());
-    }
-
-    private getLoadingDom(): React.ReactNode {
-        if (this.props.isFetching) {
-            // TODO: 新增載入元件
-            return (
-                <div>Loading</div>
-            );
-        }
-        return null;
     }
 
     private addFavoriteVideo(id: string): void {
@@ -91,7 +83,20 @@ export class VideoListContainer extends React.Component<VideoListContainerProps>
         this.props.dispatch(setDialogVideoAction(video));
     }
 
+
     public render(): React.ReactNode {
+        if (this.props.isFetching) {
+            return (
+                <Loading/>
+            )
+        }
+
+        if (this.props.videos.length === 0) {
+            return (
+                <EmptyList/>
+            );
+        }
+
         return (
             <div className='video-list-main'>
                 <VideoList videos={this.getCurrentPageVideos()}
