@@ -9,6 +9,7 @@ import { fetchVideoListApi } from "./videoApi";
 import { getVideosByVideoListJson, VideoListJson } from "../common/jsons/VideoListJson";
 import Video from "./Video";
 import Pagination from "../pagination/Pagination";
+import SessionManager from "../common/tool/SessionManager";
 
 
 export function* watchVideoActions() {
@@ -41,6 +42,14 @@ export function* fetchVideoList() {
             yield put(setVideoListPaginationAction(pagination));
 
             const videos: Video[] = getVideosByVideoListJson(videoListJson.items);
+            const favoriteVideoIds: string[] = SessionManager.getFavoriteVideoIdList();
+
+            for (const video of videos) {
+                if (favoriteVideoIds.indexOf(video.id) !== -1) {
+                    video.favorite = true;
+                }
+            }
+
             yield put(setVideoListAction(videos));
         }
     } catch (error) {
