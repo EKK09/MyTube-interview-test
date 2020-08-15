@@ -3,18 +3,83 @@ import Video from "../Video";
 
 export interface VideoListItemProps {
     video: Video;
+    addFavoriteVideoId: (id: string) => void;
+    removeFavoriteVideoId: (id: string) => void;
 }
 
 class VideoListItem extends React.Component<VideoListItemProps> {
+    constructor(props: VideoListItemProps) {
+        super(props);
+        this.handleFavoriteButtonClick = this.handleFavoriteButtonClick.bind(this);
+    }
 
+    private getVideoTitle(): React.ReactNode {
+        return (
+            <div
+                className="video-title"
+            >
+                {this.props.video.title}
+            </div>
+        )
+    }
+
+    private getVideoDescription(): React.ReactNode {
+        return (
+            <div
+                className="video-description"
+            >
+                {this.props.video.description}
+            </div>
+        )
+    }
+
+    private getVideoDuration(): React.ReactNode {
+        return (
+            <div
+                className="video-duration"
+            >
+                {this.props.video.duration}
+            </div>
+        )
+    }
+
+    private getVideoImage(): React.ReactNode {
+        return (
+            <img
+                className="video-image" src={this.props.video.imageUrl}
+            />
+        )
+    }
+
+    private getFavoriteButton(): React.ReactNode {
+        return (
+            <a
+                className="video-favorite-button"
+                onClick={this.handleFavoriteButtonClick}
+            >
+                like
+            </a>
+        );
+
+    }
+
+    private handleFavoriteButtonClick(): void {
+        const videoId: string = this.props.video.id;
+        if (this.props.video.favorite === true) {
+            this.props.removeFavoriteVideoId(videoId);
+        }
+
+        this.props.addFavoriteVideoId(videoId);
+    }
     public render(): React.ReactNode {
         // TODO : 調整 layout
         return(
             <div className="video-list-item">
-                <div>{this.props.video.title}</div>
-                <div>{this.props.video.description}</div>
-                <div>{this.props.video.duration}</div>
-                <div>{this.props.video.imageUrl}</div>
+                {this.getVideoTitle()}
+                {this.getVideoImage()}
+                {this.getVideoDescription()}
+                {this.getVideoDuration()}
+                {this.getFavoriteButton()}
             </div>
         );
     }
