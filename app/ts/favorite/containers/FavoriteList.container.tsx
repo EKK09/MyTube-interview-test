@@ -7,10 +7,12 @@ import {
     addFavoriteVideoIdAction,
     cancelFetchFavoriteListAction,
     fetchFavoriteListAction,
-    removeFavoriteVideoIdAction
+    likeVideoFavoriteByIdAction,
+    removeFavoriteVideoIdAction,
+    unlikeVideoFavoriteByIdAction
 } from "../favoriteListAction";
 import VideoList from "../../video/components/VideoList.component";
-import {likeVideoFavoriteByIdAction, unlikeVideoFavoriteByIdAction} from "../favoriteListAction";
+import ConnectedFavoriteListPagination from "./FavoriteListPagination.container";
 import {setDialogVideoAction, showVideoDialogAction} from "../../videoDialog/videoDialogActions";
 
 interface FavoriteListContainerProps extends FavoriteListStateProps{
@@ -66,6 +68,7 @@ export class FavoriteListContainer extends React.Component<FavoriteListContainer
                     removeFavoriteVideo={this.removeFavoriteVideo}
                     handleVideoClick={this.handleVideoClick}
                 />
+                <ConnectedFavoriteListPagination/>
             </div>
         );
     }
