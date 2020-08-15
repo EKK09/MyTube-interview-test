@@ -21,6 +21,7 @@ class VideoListItem extends React.Component<VideoListItemProps> {
         return (
             <div
                 className="video-title"
+                onClick={this.handleVideoItemClick}
             >
                 {this.props.video.title}
             </div>
@@ -39,7 +40,10 @@ class VideoListItem extends React.Component<VideoListItemProps> {
 
     private getVideoImageWrapper(): React.ReactNode {
         return (
-            <div className="video-image-wrapper">
+            <div
+                className="video-image-wrapper"
+                onClick={this.handleVideoItemClick}
+            >
                 {this.getVideoImage()}
                 {this.getVideoDuration()}
             </div>
@@ -100,7 +104,6 @@ class VideoListItem extends React.Component<VideoListItemProps> {
     }
 
     private handleVideoItemClick(): void {
-        console.log('rwrw');
         const video: Video = this.props.video;
         this.props.handleVideoClick(video);
     }
@@ -108,7 +111,7 @@ class VideoListItem extends React.Component<VideoListItemProps> {
     public render(): React.ReactNode {
         // TODO : 調整 layout
         return(
-            <div className="video-list-item" onClick={this.handleVideoItemClick}>
+            <div className="video-list-item">
                 {this.getVideoTitle()}
                 {this.getVideoImageWrapper()}
                 {this.getVideoDescription()}
