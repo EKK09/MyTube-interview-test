@@ -1,18 +1,30 @@
 import * as React from "react";
 import Video from "../Video";
-import ConnectedVideoListItem from "../containers/VideoListItem.container";
+import VideoListItem from "./VideoListItem.component";
 
 export interface VideoListProps {
     videos: Video[];
+    addFavoriteVideo: (id: string) => void;
+    removeFavoriteVideo: (id: string) => void;
 }
 
 class VideoList extends React.Component <VideoListProps> {
+    constructor(props: VideoListProps) {
+        super(props);
+        this.getVideoListItems = this.getVideoListItems.bind(this);
+    }
 
     private getVideoListItems(): React.ReactNode[] {
         const videoListItems: React.ReactNode[] = [];
 
         for (const video of this.props.videos) {
-            videoListItems.push(<ConnectedVideoListItem video={video}/>);
+            videoListItems.push(
+                <VideoListItem
+                    video={video}
+                    addFavoriteVideo={this.props.addFavoriteVideo}
+                    removeFavoriteVideo={this.props.removeFavoriteVideo}
+                />
+            );
         }
 
         return videoListItems;

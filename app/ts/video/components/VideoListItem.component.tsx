@@ -11,6 +11,7 @@ class VideoListItem extends React.Component<VideoListItemProps> {
     constructor(props: VideoListItemProps) {
         super(props);
         this.handleFavoriteButtonClick = this.handleFavoriteButtonClick.bind(this);
+        this.getFavoriteButton = this.getFavoriteButton.bind(this);
     }
 
     private getVideoTitle(): React.ReactNode {
