@@ -43,6 +43,13 @@ export function* fetchVideoList() {
         const videos2: Video[] = getVideosByVideoListJson(videoListJson2.items);
 
         const completeVideos: Video[] = videos.concat(videos2);
+        const favoriteVideoIds: string[] = SessionManager.getFavoriteVideoIdList();
+
+        for (const video of completeVideos) {
+            if (favoriteVideoIds.indexOf(video.id) !== -1) {
+                video.favorite = true;
+            }
+        }
 
         const pagination: Pagination = new Pagination();
         pagination.loadFromPageInfoJson({totalResults: completeVideos.length, resultsPerPage: 12});
