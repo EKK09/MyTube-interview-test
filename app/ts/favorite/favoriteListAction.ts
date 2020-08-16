@@ -9,6 +9,7 @@ const PREFIX: string = ActionTypePrefix.FAVORITE_LIST;
 export const FavoriteListActionType= {
     SET_LIST: `${PREFIX}_SET_LIST`,
     FETCH_LIST: `${PREFIX}_FETCH_LIST`,
+    SET_IS_FETCHING: `${PREFIX}_SET_IS_FETCHING`,
     ADD_FAVORITE_VIDEO_ID:`${PREFIX}_ADD_FAVORITE_VIDEO_ID`,
     REMOVE_FAVORITE_VIDEO_ID:`${PREFIX}_REMOVE_FAVORITE_VIDEO_ID`,
     SET_PAGINATION: `${PREFIX}_SET_PAGINATION`,
@@ -27,6 +28,13 @@ export const setFavoriteVideoListAction = (videos: Video[]): AnyAction => {
     return {
         type: FavoriteListActionType.SET_LIST,
         videos
+    };
+};
+
+export const setIsFetchingFavoriteListAction = (isFetching: boolean): AnyAction => {
+    return {
+        type: FavoriteListActionType.SET_IS_FETCHING,
+        isFetching: isFetching,
     };
 };
 

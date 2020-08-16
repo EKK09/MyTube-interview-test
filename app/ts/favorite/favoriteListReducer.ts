@@ -7,6 +7,7 @@ import Video from "../video/Video";
 
 export interface FavoriteListState {
     pagination: Pagination;
+    isFetching: boolean;
     videos: Video[];
 }
 
@@ -14,6 +15,7 @@ const defaultPagination: Pagination = new Pagination();
 
 export const DEFAULT_FAVORITE_LIST_STATE: FavoriteListState = {
     videos: [],
+    isFetching: false,
     pagination: defaultPagination
 };
 
@@ -29,6 +31,12 @@ const favoriteListReducer: Reducer<FavoriteListState> = (
             return {
                 ...state,
                 videos: cloneDeep(action.videos),
+            };
+
+        case FavoriteListActionType.SET_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching,
             };
 
         case FavoriteListActionType.ADD_FAVORITE_VIDEO_ID:
