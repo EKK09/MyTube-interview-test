@@ -3,4 +3,5 @@
 /public/js/*.bundle.js
 /.idea
 npm-debug.log
+buildConfig.js
 

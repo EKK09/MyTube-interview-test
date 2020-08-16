@@ -3,34 +3,13 @@ const webpack = require('webpack');
 
 const appName = "myTube";
 
-function bundleApps(apps) {
-    let webApps = {};
-    for (let index in apps) {
-        let app = apps[index];
-        webApps[app] = bundleApp(app);
-    }
-    return webApps;
+let apiKey = '';
+
+if (process.env.API_KEY) {
+    apiKey = process.env.API_KEY;
+} else {
+    apiKey = require('./buildConfig.js');
 }
-
-function bundleApp(app) {
-    let bundles = [];
-    bundles.push("./app/ts/" + app + ".tsx");
-    bundles.push("./app/scss/" + app + ".scss");
-    return bundles;
-}
-
-const test = {
-    "myTube": [
-        "./app/ts/" + appName + ".tsx",
-        "./app/scss/" + appName + ".scss"
-    ]
-};
-
-const jsOutputFileName = `${appName}.bundle.js`;
-const jsOutputPath = `${__dirname}/public/js/`;
-
-const cssOutputFileName = `${appName}.bundle.css`;
-const cssOutputPath = `${__dirname}/public/css/`;
 
 module.exports = {
     mode: "none",
@@ -81,7 +60,7 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin("../css/[name].bundle.css"),
         new webpack.DefinePlugin({
-            API_KEY: JSON.stringify(process.env.API_KEY),
+            API_KEY: JSON.stringify(apiKey),
         }),
     ]
 };
