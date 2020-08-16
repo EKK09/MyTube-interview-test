@@ -1,0 +1,20 @@
+.popular-video {
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+    .video-list-item {
+        width: auto;
+        height: auto;
+        min-width: 380px;
+        max-width: 760px;
+        min-height: 400px;
+        max-height: 800px;
+        margin: auto;
+
+        .video-image-wrapper {
+            height: auto;
+            min-height: 400px;
+            max-height: 600px;
+        }
+    }
+}

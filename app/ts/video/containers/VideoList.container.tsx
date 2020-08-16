@@ -18,6 +18,7 @@ import Loading from "../../common/components/Loading.component";
 import EmptyList from "../../common/components/EmptyList.component";
 import MyTubeTitle from "../../common/components/MyTubeTitle.component";
 import {ListTitle} from "../../common/constants/ListTitle";
+import ConnectedVPopularVideo from "../../popular/containers/PopularVideo.container";
 
 interface VideoListContainerProps extends VideoListStateProps{
     dispatch: Dispatch;
@@ -101,6 +102,8 @@ export class VideoListContainer extends React.Component<VideoListContainerProps>
 
         return (
             <div className='video-list-main'>
+                <MyTubeTitle title={ListTitle.POPULAR_VIDEO_TITLE}/>
+                <ConnectedVPopularVideo/>
                 <MyTubeTitle title={ListTitle.VIDEO_LIST_TITLE}/>
                 <VideoList videos={this.getCurrentPageVideos()}
                    addFavoriteVideo={this.addFavoriteVideo}
