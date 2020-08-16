@@ -1,24 +1,26 @@
 .video-dialog-wrapper {
-  position: fixed;
+  position: absolute;
   z-index: 9999;
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.3);
   overflow: auto;
+  display: flex;
+  justify-content: center;
 
 
   .video-dialog {
-    position: relative;
+    position: fixed;
     background-color: black;
-    border: 2px solid #FF9900;
-    margin: 10% auto;
-    height: auto;
-    width: 70%;
+    border: 1px solid #FF9900;
+    margin: auto;
+    height: 92%;
+    top: 4%;
+    bottom: 4%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    overflow-x: hidden;
-    overflow-y: scroll;
 
     .video-dialog-hide-button {
       position: absolute;
@@ -39,8 +41,9 @@
 
     .video-dialog-player {
       width: 100%;
-      height: auto;
       outline: none;
+      height: auto;
+      max-height: 60%;
       margin: 0;
       border: 0;
       padding: 0;
@@ -53,7 +56,7 @@
       height: auto;
       color: #FF9900;
       border-bottom: 1px solid white;
-      margin-left: 6px;
+      padding: 6px;
       word-break: break-all;
     }
 
@@ -61,7 +64,7 @@
       flex: 1;
       font: 16px Roboto Arial sans-serif;
       padding: 4px;
-
+      overflow-x: hidden;
     }
 
   }

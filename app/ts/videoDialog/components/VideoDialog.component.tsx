@@ -25,7 +25,7 @@ class VideoDialog extends React.Component<VideoDialogProps> {
     private getVideoPlayer(): React.ReactNode{
         return (
             <video className="video-dialog-player" width="320" height="240" controls>
-                <source src="./video/test.m3u8" />
+                <source src="./video/001.mp4" />
                 影片無法播放，請改用別的瀏覽器，或將影片
                 <a href="video/test.mp4">下載</a>後再播放。
             </video>

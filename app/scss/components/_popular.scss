@@ -1,20 +1,13 @@
 .popular-video {
     margin-bottom: 10px;
     margin-top: 10px;
+    overflow: hidden;
 
-    .video-list-item {
-        width: auto;
-        height: auto;
-        min-width: 380px;
-        max-width: 760px;
-        min-height: 400px;
-        max-height: 800px;
-        margin: auto;
+    .video-image-wrapper {
+    	margin-top: 15px;
+    }
 
-        .video-image-wrapper {
-            height: auto;
-            min-height: 400px;
-            max-height: 600px;
-        }
+    .video-description {
+    	padding-top: 5px;
     }
 }
