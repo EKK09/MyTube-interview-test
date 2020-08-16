@@ -49,14 +49,26 @@ export const getVideosByVideoListJson = (videoItemJsons: VideoItemJson[]): Video
     return videos;
 };
 
+export const getFavoriteListByVideoListJson = (videoItemJsons: VideoItemJson[]): Video[] => {
+    const videos: Video[] = [];
+
+    for (const videoItemJson of videoItemJsons) {
+        const video: Video = getVideoByVideoItemJson(videoItemJson);
+        video.favorite = true;
+        videos.push(video);
+    }
+
+    return videos;
+};
+
 export const getVideoByVideoItemJson = (videoItemJson: VideoItemJson): Video => {
     const video: Video = new Video();
 
     video.id = videoItemJson.id;
     video.title = videoItemJson.snippet.title;
     video.description = videoItemJson.snippet.description;
+    // TODO: 目前使用預設畫質
     video.imageUrl = videoItemJson.snippet.thumbnails.high.url;
     video.duration = videoItemJson.contentDetails.duration;
-    
     return video;
 };
