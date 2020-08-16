@@ -3,6 +3,7 @@ class Video {
     public title: string = '';
     public description: string = '';
     public imageUrl: string = '';
+    public videoUrl: string = '';
     public duration: string = '';
     public favorite: boolean = false;
 }

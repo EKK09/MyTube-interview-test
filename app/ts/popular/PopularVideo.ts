@@ -9,6 +9,7 @@ popularVideo.description = `
 `;
 popularVideo.duration = "PT80H11M11S";
 popularVideo.imageUrl = "./image/002.gif";
+popularVideo.videoUrl = "./video/001.mp4";
 popularVideo.favorite = true;
 
 export default popularVideo;
