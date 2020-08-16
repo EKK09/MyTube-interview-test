@@ -1,6 +1,6 @@
 enum MyTubeRoutePathCollection {
     INDEX = "/",
-    FAVORITE = "/favorite",
+    FAVORITE = "/favorite/",
 }
 
 export default MyTubeRoutePathCollection;
