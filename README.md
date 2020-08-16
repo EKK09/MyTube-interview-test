@@ -8,6 +8,14 @@
 ```
 npm install
 ```
+
+### 設定編譯所需要變數
+> 在主目錄下新增 `buildConfig.js`檔案，設定 API_KEY
+```
+	const API_KEY = [APIKEY];
+	module.exports = API_KEY;
+```
+
 ### 編譯程式碼
 ```
 npm run build
