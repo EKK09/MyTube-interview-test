@@ -12,3 +12,8 @@ npm install
 ```
 npm run build
 ```
+
+### 開啟 server
+```
+npm run start
+```
