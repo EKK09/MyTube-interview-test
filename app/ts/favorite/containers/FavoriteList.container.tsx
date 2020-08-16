@@ -17,6 +17,8 @@ import {setDialogVideoAction, showVideoDialogAction} from "../../videoDialog/vid
 import EmptyList from "../../common/components/EmptyList.component";
 import Pagination from "../../pagination/Pagination";
 import Loading from "../../common/components/Loading.component";
+import MyTubeTitle from "../../common/components/MyTubeTitle.component";
+import {ListTitle} from "../../common/constants/ListTitle";
 
 interface FavoriteListContainerProps extends FavoriteListStateProps{
     dispatch: Dispatch;
@@ -100,6 +102,7 @@ export class FavoriteListContainer extends React.Component<FavoriteListContainer
 
         return (
             <div className='favorite-video-list-main'>
+                <MyTubeTitle title={ListTitle.FAVORITE_LIST_TITLE}/>
                 <VideoList
                     videos={this.getCurrentPageVideos()}
                     addFavoriteVideo={this.addFavoriteVideo}
