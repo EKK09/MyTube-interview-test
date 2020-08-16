@@ -1,4 +1,4 @@
-export const API_KEY = "AIzaSyBVt3SPSyBXBAa9pCQ4McLKAxPsABnCVJk";
+declare const API_KEY: string;
 
 export interface QueryParameter {
     part: string;

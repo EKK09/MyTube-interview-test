@@ -1,4 +1,5 @@
 const  ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require('webpack');
 
 const appName = "myTube";
 
@@ -78,6 +79,9 @@ module.exports = {
 
     // Use the plugin to specify the resulting filename (and add needed behavior to the compiler)
     plugins: [
-        new ExtractTextPlugin("../css/[name].bundle.css")
+        new ExtractTextPlugin("../css/[name].bundle.css"),
+        new webpack.DefinePlugin({
+            API_KEY: JSON.stringify(process.env.API_KEY),
+        }),
     ]
 };
