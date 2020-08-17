@@ -1,28 +1,18 @@
 export const getTimeTextFromDuration = (duration: string): string => {
     // ex: PT2M32S P#DT#H#M#S
+    // TODO: 暫時不考慮長度超過一天的影片
     let timeText: string = '';
-    let hourText: string = '';
-    let minuteText: string = '';
-    let secondText: string = '';
 
+    const TIndex: number = duration.indexOf('T');
 
-    const hourMatcher: RegExpMatchArray | null = duration.match(/(?<=T)[0-9]+(?=H)/);
-    const minuteMatcher: RegExpMatchArray | null = hourMatcher !== null? duration.match(/(?<=H)[0-9]+(?=M)/): duration.match(/(?<=T)[0-9]+(?=M)/);
-    const secondMatcher: RegExpMatchArray | null = duration.match(/(?<=M)[0-9]+(?=S)/);
-
-    hourText = hourMatcher? hourMatcher[0]: '';
-
-
-    if (hourText === '') {
-        minuteText = minuteMatcher? minuteMatcher[0]: '';
-        timeText += `${minuteText}:`;
-    } else {
-        minuteText = minuteMatcher? getTwoDigitNumber(Number(minuteMatcher[0])): '';
-        timeText += `${hourText}:${minuteText}:`;
+    if (TIndex === -1) {
+        return '00:00';
     }
-
-    secondText = secondMatcher? getTwoDigitNumber(Number(secondMatcher[0])): '';
-    timeText += secondText;
+    // 00H00M00S
+    timeText = duration.slice(TIndex + 1);
+    timeText = timeText.replace('H', ':');
+    timeText = timeText.replace('M', ':');
+    timeText = timeText.replace('S', '');
 
     return timeText;
 };
