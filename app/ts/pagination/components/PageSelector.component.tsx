@@ -56,7 +56,7 @@ class PageSelector extends React.Component<PageSelectorProps, PageSelectorState>
         return (
             <a
                 key="first-page"
-                className={`page-option-list-item ${this.getDisabledClassName(this.isFirstPage())}`}
+                className={`page-option-list-item first-page ${this.getDisabledClassName(this.isFirstPage())}`}
                 onClick={this.handlePageChange.bind(this, firstPage)}
                 href="#top"
             >
@@ -76,7 +76,7 @@ class PageSelector extends React.Component<PageSelectorProps, PageSelectorState>
         return (
             <a
                 key="last-page"
-                className={`page-option-list-item ${this.getDisabledClassName(this.isLastPage())}`}
+                className={`page-option-list-item last-page ${this.getDisabledClassName(this.isLastPage())}`}
                 onClick={this.handlePageChange.bind(this, lastPage)}
                 href="#top"
             >

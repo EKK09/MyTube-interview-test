@@ -1,7 +1,15 @@
+@import "../variable/variable";
+
 .myTube-title {
   font-size: 22px;
   font-weight: 700;
   text-transform: capitalize;
   text-decoration: underline;
-  margin: 15px 8px;
+  padding: 15px 8px;
+}
+
+@media screen and (max-width: $mobile-width){
+  .myTube-title {
+  	padding: 15px 3px;
+  }
 }

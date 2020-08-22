@@ -1,9 +1,11 @@
+@import "../variable/variable";
+
 .page-option-list {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 15px 10px;
+  margin: 15px 2px;
 
   .page-option-list-item {
     font-size: 16px;
@@ -41,5 +43,20 @@
     i {
       margin-left: 4px;
     }
+  }
+}
+
+@media screen and (max-width: $mobile-width){
+  .page-option-list-item {
+    font-size: 12px;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+  }
+  .page-option-list-item.page:not(.active) {
+    display: none;
+  }
+  .function-page {
+    padding: 0 14px;
   }
 }
