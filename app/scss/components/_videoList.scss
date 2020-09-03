@@ -1,19 +1,35 @@
 @import "../variable/variable";
 
+$video-item-left-margin: 8px;
+$video-list-left-padding: 10px;
+
+.video-list-main {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.popular-video {
+    padding-right: $video-list-left-padding;
+    padding-left: $video-list-left-padding;
+}
+
 .video-list {
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    justify-content: space-around;
+    align-self: center;
+    padding-right: $video-list-left-padding;
+    padding-left: $video-list-left-padding;
 }
 
 .video-list-item {
-    width: 380px;
+    flex-basis: calc(100%/4 - #{$video-item-left-margin*2});
     height: 360px;
     position: relative;
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin: 10px $video-item-left-margin;
     cursor: pointer;
 
     .video-title {
@@ -98,13 +114,29 @@
     }
 }
 
-@media screen and (max-width: $mobile-width){
-    .video-list {
-        flex-direction: column;
-    }
-
+@media screen and (max-width: 900px){
     .video-list-item {
-        width: 100%;
-        margin: 0;
+        flex-basis: calc(100%/3 - #{$video-item-left-margin*2});
+    }
+}
+
+@media screen and (max-width: 680px){
+    .video-list {
+        padding-left: 1px;
+        padding-right: 1px;
+    }
+    .video-list-item {
+        flex-basis: calc(100%/2 - #{3px*2});
+        margin-right: 2px;
+        margin-left: 2px;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .video-list-item {
+        flex-basis: calc(100%/1 - #{2px*2});
+        flex-grow: 1;
+        margin-right: 2px;
+        margin-left: 2px;
     }
 }
