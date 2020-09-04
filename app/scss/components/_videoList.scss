@@ -12,6 +12,8 @@ $video-list-left-padding: 10px;
 .popular-video {
     padding-right: $video-list-left-padding;
     padding-left: $video-list-left-padding;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .video-list {
@@ -132,10 +134,9 @@ $video-list-left-padding: 10px;
     }
 }
 
-@media screen and (max-width: 400px){
+@media screen and (max-width: 550px){
     .video-list-item {
-        flex-basis: calc(100%/1 - #{2px*2});
-        flex-grow: 1;
+        flex: 1 1 calc(100% - #{2px*2});
         margin-right: 2px;
         margin-left: 2px;
     }
